@@ -129,8 +129,16 @@ compare 10 条输入（各 3 questions）              min 315.3 | avg 333.2 | m
 环境                                            16 logical CPUs，torch threads=8，float32
 ```
 
-run-to-run 波动实测约 ±10%（第二次跑同样的 1-question 是 141.21 ms，3-question 356.91 ms，
-10-question 1084.33 ms）。WSL 上 CPU 频率与宿主负载会直接影响这些数字，别把它们当稳定基线。
+发布前又完整重跑了一遍验证（run C），三次 `make benchmark` 的真实数据：
+
+| run | cold start | warm 1q avg | 1 / 3 / 10 questions |
+|---|---|---|---|
+| A（实验时） | 20.53 s | 129.24 ms | 123.8 / 340.9 / 986.2 ms |
+| B（lint 整理后） | — | — | 141.2 / 356.9 / 1084.3 ms |
+| C（发布前） | 22.57 s | 140.50 ms | 149.3 / 315.6 / 996.0 ms |
+
+run-to-run 波动实测约 ±10%。WSL 上 CPU 频率与宿主负载直接影响这些数字，别把它们当稳定基线；
+README 的延迟因此一律写成区间而不是单点。
 
 官方 laya-multilingual 是 T4 GPU 上 32.8 ms（1 question）/ 72.3 ms（10 questions）。
 **本地 CPU 数字约为其 4 倍（单问）到 14 倍（10 问）**，两者不可互换引用。README 把
@@ -142,9 +150,16 @@ Official benchmark 和 Local WSL benchmark 分成两节。
 ## 6. 测试
 
 ```bash
-$ make test
+$ make test          # 实验时
 13 passed in 22.41s
+$ make test          # 发布前重跑
+13 passed in 23.21s
 ```
+
+发布前 `make demo` / `make typed` / `make compare` / `make benchmark` / `make test` 五个入口
+全部重跑，退出码均为 0；决策与概率与实验时逐项一致（billing / technical / logistics / account /
+other 的判定、urgency 期望值、noul 数值均未变化），只有毫秒级延迟按 ±10% 浮动。
+未重新下载模型（权重已在本地）。
 
 覆盖：`import laya` → 模型目录存在 → **6 个必需文件逐个存在**（parametrize）→
 `missing_files() == []` → 设备字段 → `predict` 返回 dict → `answers` 键集合等于请求的

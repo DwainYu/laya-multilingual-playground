@@ -3,6 +3,8 @@ models/*
 __pycache__/
 .pytest_cache/
 .venv/
+.ruff_cache/
+.cache/
 *.pyc
 *.egg-info/
 .DS_Store
