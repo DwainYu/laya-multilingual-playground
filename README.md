@@ -250,6 +250,7 @@ is not calibrated enough for a gate to be trustworthy — that ordering is docum
 laya-multilingual-playground/
 ├── README.md
 ├── IMPLEMENTATION_REPORT.md      full measured log: versions, sizes, latency, gotchas
+├── PUBLISH_REPORT.md             how this repo was published + clean-clone repro check
 ├── LICENSE
 ├── docs/
 │   ├── architecture.md           current pipeline + where Ollama/Tools would fit
