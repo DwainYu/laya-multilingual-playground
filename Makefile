@@ -17,7 +17,7 @@ help:
 	@echo "make test       - pytest smoke tests"
 
 setup:
-	$(UV) venv --python 3.11
+	@[ -d .venv ] || $(UV) venv --python 3.11   # idempotent: uv venv refuses to clobber an existing .venv
 	$(UV) sync --extra dev
 
 download:
