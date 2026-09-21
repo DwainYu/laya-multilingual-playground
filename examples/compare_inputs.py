@@ -66,8 +66,9 @@ def main() -> int:
         print(f"\n[{row['title']}] {row['text']}\n  {probs}")
 
     latencies = [row["ms"] for row in rows]
-    print("\nLatency over %d requests: min %.1f ms / avg %.1f ms / max %.1f ms"
-          % (len(latencies), min(latencies), sum(latencies) / len(latencies), max(latencies)))
+    avg = sum(latencies) / len(latencies)
+    print(f"\nLatency over {len(latencies)} requests: "
+          f"min {min(latencies):.1f} ms / avg {avg:.1f} ms / max {max(latencies):.1f} ms")
     print("=" * 40)
     return 0
 

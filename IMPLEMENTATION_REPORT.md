@@ -129,6 +129,9 @@ compare 10 条输入（各 3 questions）              min 315.3 | avg 333.2 | m
 环境                                            16 logical CPUs，torch threads=8，float32
 ```
 
+run-to-run 波动实测约 ±10%（第二次跑同样的 1-question 是 141.21 ms，3-question 356.91 ms，
+10-question 1084.33 ms）。WSL 上 CPU 频率与宿主负载会直接影响这些数字，别把它们当稳定基线。
+
 官方 laya-multilingual 是 T4 GPU 上 32.8 ms（1 question）/ 72.3 ms（10 questions）。
 **本地 CPU 数字约为其 4 倍（单问）到 14 倍（10 问）**，两者不可互换引用。README 把
 Official benchmark 和 Local WSL benchmark 分成两节。

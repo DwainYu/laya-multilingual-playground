@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 
-from laya_play import describe_runtime, load_agent, predict_timed, banner
+from laya_play import banner, describe_runtime, load_agent, predict_timed
 from laya_play.questions import REFUND_TICKET, TRIAGE_QUESTIONS
 
 

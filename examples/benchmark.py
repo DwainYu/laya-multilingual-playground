@@ -15,8 +15,8 @@ import time
 
 import torch
 
-from laya_play import MODEL_ID, banner, describe_runtime, load_agent, predict_timed
-from laya_play.questions import DEPARTMENT_CRITERIA, TYPED_QUESTIONS, REFUND_TICKET
+from laya_play import banner, describe_runtime, load_agent, predict_timed
+from laya_play.questions import DEPARTMENT_CRITERIA, REFUND_TICKET, TYPED_QUESTIONS
 
 
 def choice_question(options: dict, n: int) -> dict:

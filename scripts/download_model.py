@@ -39,7 +39,7 @@ def main() -> int:
     print("Checkpoint OK:")
     for path in sorted(target.rglob("*")):
         if path.is_file():
-            print(f"  {str(path.relative_to(target)):<32}{path.stat().st_size / 1024**2:>9.2f} MiB")
+            print(f"  {path.relative_to(target)!s:<32}{path.stat().st_size / 1024**2:>9.2f} MiB")
     print(f"\nTotal: {dir_size_mib(target):.1f} MiB in {target}")
     return 0
 
